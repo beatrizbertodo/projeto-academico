@@ -43,9 +43,8 @@ O tema escolhido foi uma **mini biblioteca**: os usuários podem navegar pelos l
 
 ## 👥 Equipe
 
-- [Seu nome]
-- [Nome do colega 1]
-- [Nome do colega 2]
+- Beatriz Nascimento
+- Pedro Henrique Rodrigues
 
 ## 📄 Observação
 
