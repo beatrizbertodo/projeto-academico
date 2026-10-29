@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Projeto Acadêmico</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --error-color: #e63946;
+            --success-color: #2a9d8f;
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 40px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-form {
+            background: var(--light-gray);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .error-message {
+            color: var(--error-color);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .success-message {
+            background-color: var(--success-color);
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Projeto Acadêmico</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="livros.html">Livros</a></li>
+                <li><a href="equipe.html">Equipe</a></li>
+                <li><a href="contato.html" class="active">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>📩 Entre em Contato</h2>
+        
+        <div class="success-message" id="successMessage">
+            Mensagem enviada com sucesso! Entraremos em contato em breve.
+        </div>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <p>Tem dúvidas, sugestões ou quer colaborar com nosso projeto? Envie-nos uma mensagem!</p>
+                <p>Nossa equipe está comprometida em responder todas as mensagens em até 48 horas.</p>
+                <p>Você também pode nos encontrar nas redes sociais ou no campus universitário.</p>
+            </div>
+            
+            <form id="contactForm" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" required>
+                    <div class="error-message" id="nameError">Por favor, insira seu nome completo</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError">Por favor, insira um e-mail válido</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Assunto:</label>
+                    <input type="text" id="subject" name="subject" required>
+                    <div class="error-message" id="subjectError">Por favor, insira o assunto da mensagem</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Mensagem:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <div class="error-message" id="messageError">Por favor, escreva sua mensagem (mínimo 10 caracteres)</div>
+                </div>
+                
+                <button type="submit" id="submitBtn">Enviar</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>Projeto acadêmico desenvolvido por estudantes criativos de TI – 2º/4º semestre 😄</p>
+    </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        
+        // Elementos para validação
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const subjectInput = document.getElementById('subject');
+        const messageInput = document.getElementById('message');
+        
+        // Elementos de erro
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const subjectError = document.getElementById('subjectError');
+        const messageError = document.getElementById('messageError');
+        
+        // Função de validação de e-mail
+        const isValidEmail = (email) => {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        };
+        
+        // Validar campos em tempo real
+        nameInput.addEventListener('input', () => {
+            if (nameInput.value.trim().length < 3) {
+                nameError.style.display = 'block';
+            } else {
+                nameError.style.display = 'none';
+            }
+        });
+        
+        emailInput.addEventListener('input', () => {
+            if (!isValidEmail(emailInput.value)) {
+                emailError.style.display = 'block';
+            } else {
+                emailError.style.display = 'none';
+            }
+        });
+        
+        subjectInput.addEventListener('input', () => {
+            if (subjectInput.value.trim().length < 3) {
+                subjectError.style.display = 'block';
+            } else {
+                subjectError.style.display = 'none';
+            }
+        });
+        
+        messageInput.addEventListener('input', () => {
+            if (messageInput.value.trim().length < 10) {
+                messageError.style.display = 'block';
+            } else {
+                messageError.style.display = 'none';
+            }
+        });
+        
+        // Envio do formulário
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validarFormulario()) {
+                enviarFormulario();
+            }
+        });
+        
+        function validarFormulario() {
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const subject = subjectInput.value.trim();
+            const message = messageInput.value.trim();
+            
+            let valido = true;
+            
+            // Reset errors
+            nameError.style.display = 'none';
+            emailError.style.display = 'none';
+            subjectError.style.display = 'none';
+            messageError.style.display = 'none';
+            
+            if (name.length < 3) {
+                nameError.style.display = 'block';
+                valido = false;
+            }
+            
+            if (!isValidEmail(email)) {
+                emailError.style.display = 'block';
+                valido = false;
+            }
+            
+            if (subject.length < 3) {
+                subjectError.style.display = 'block';
+                valido = false;
+            }
+            
+            if (message.length < 10) {
+                messageError.style.display = 'block';
+                valido = false;
+            }
+            
+            return valido;
+        }
+        
+        function enviarFormulario() {
+            const formData = {
+                nome: nameInput.value,
+                email: emailInput.value,
+                assunto: subjectInput.value,
+                mensagem: messageInput.value
+            };
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Enviando...';
+            
+            fetch('contatos.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na rede: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    // MOSTRAR MENSAGEM DE SUCESSO
+                    successMessage.textContent = '✅ ' + data.message;
+                    successMessage.style.display = 'block';
+                    contactForm.reset();
+                    
+                    // REDIRECIONAR APÓS 2 SEGUNDOS
+                    setTimeout(() => {
+                        window.location.href = 'lista_contatos.html?success=true&message=' + encodeURIComponent(data.message);
+                    }, 2000);
+                } else {
+                    alert('❌ Erro: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('❌ Erro ao enviar formulário. Verifique o console para detalhes.');
+                console.error('Erro detalhado:', error);
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar';
+            });
+        }
+    });
+</script>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa Equipe - Home Livros</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #2c3e50;
+            color: #e74c3c;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #34495e;
+            padding: 0.5rem 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #3d566e;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .team-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .team-member {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .member-info {
+            padding: 1.5rem;
+        }
+        .member-info h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        .member-info p {
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 2rem;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Equipe Desenvolvedora</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="livros.html">Livros</a>
+        <a href="equipe.html" class="active">Equipe</a>
+        <a href="contato.html">Contato</a>
+    </nav>
+    <div class="container">
+        <h2>👥 Nossa Equipe</h2>
+        <div class="team-section" id="teamContainer">
+            
+        </div>
+    </div>
+    <footer>
+        <p>Projeto acadêmico desenvolvido por estudantes criativos de TI – 2º/4º semestre 😄</p>
+    </footer>
+
+    <script>
+        
+        (function() {
+            'use strict';
+
+            
+            const config = {
+                animationDuration: 300,
+                apiSimulationDelay: 500
+            };
+
+           
+            const teamData = [
+                {
+                    name: 'Pedro Henrique Rodrigues',
+                    matricula: '202502952678',
+                },
+                {
+                    name: 'Renan Zonta dos Santos',
+                    matricula: '202051400935',                   
+                },
+                {
+                    name: 'Beatriz Silva Bertodo do Nascimento',
+                    matricula: '202502357851',                    
+                },
+                {
+                    name: 'Maria Luiza Nicolusi de Mattos Silva',
+                    matricula: '202502259131',
+                }
+            ];
+
+           
+            const DOM = {
+                teamContainer: document.getElementById('teamContainer'),
+                navLinks: document.querySelectorAll('.nav-link')
+            };
+
+            
+            const app = {
+                init() {
+                    this.setupEventListeners();
+                    this.renderTeamMembers();
+                    this.activateNavLink();
+                },
+
+                setupEventListeners() {
+                    
+                    DOM.navLinks.forEach(link => {
+                        link.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const targetId = this.getAttribute('href');
+                            if (targetId && targetId !== '#') {
+                                document.querySelector(targetId)?.scrollIntoView({
+                                    behavior: 'smooth'
+                                });
+                            }
+                        });
+                    });
+                },
+
+                renderTeamMembers() {
+                    
+                    setTimeout(() => {
+                        const membersHTML = teamData.map(member => `
+                            <div class="team-member" data-aos="fade-up">
+                                <div class="member-info">
+                                    <h3>${member.name}</h3>
+                                    <p><span class="highlight">Matrícula:</span> ${member.matricula}</p>
+                                    <p><span class="highlight">Função:</span> ${member.role}</p>
+                                    <p>${member.bio}</p>
+                                </div>
+                            </div>
+                        `).join('');
+
+                        DOM.teamContainer.innerHTML = membersHTML;
+                        
+                        
+                        this.animateTeamMembers();
+                    }, config.apiSimulationDelay);
+                },
+
+                animateTeamMembers() {
+                    const members = document.querySelectorAll('.team-member');
+                    members.forEach((member, index) => {
+                        member.style.opacity = '0';
+                        member.style.transform = 'translateY(20px)';
+                        member.style.transition = `all 0.5s ease ${index * 0.1}s`;
+                        
+                        
+                        requestAnimationFrame(() => {
+                            member.style.opacity = '1';
+                            member.style.transform = 'translateY(0)';
+                        });
+                    });
+                },
+
+                activateNavLink() {
+                    
+                    window.addEventListener('scroll', () => {
+                        const scrollPosition = window.scrollY;
+                        
+                        DOM.navLinks.forEach(link => {
+                            const sectionId = link.getAttribute('href');
+                            if (sectionId && sectionId !== '#') {
+                                const section = document.querySelector(sectionId);
+                                if (section) {
+                                    const sectionTop = section.offsetTop - 100;
+                                    const sectionBottom = sectionTop + section.offsetHeight;
+                                    
+                                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                                        link.classList.add('active');
+                                    } else {
+                                        link.classList.remove('active');
+                                    }
+                                }
+                            }
+                        });
+                    });
+                }
+            };
+
+            
+            document.addEventListener('DOMContentLoaded', () => app.init());
+        })();
+    </script>
+</body>
+</html>

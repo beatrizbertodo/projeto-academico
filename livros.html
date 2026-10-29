@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Virtual - Projeto Acadêmico</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: rgb(255, 255, 255);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #db7134;
+        }
+        
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #db7134;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(235, 231, 231, 0.1);
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #0e1e29;
+            color: white;
+        }
+        
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .book-image {
+            width: 80px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .search-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        
+        #searchInput {
+            padding: 0.5rem 1rem;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Livros</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="livros.html" class="active">Livros</a></li>
+                <li><a href="equipe.html">Equipe</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="🔍 Pesquisar livros..." aria-label="Pesquisar livros">
+        </div>
+        
+        <h2>📚 Tabela de Livros</h2>
+        
+        <table id="booksTable">
+            <thead>
+                <tr>
+                    <th>Imagem</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Ano</th>
+                    <th>Resumo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="O pequeno principe.png" alt="O Pequeno Príncipe" class="book-image"></td>
+                    <td>O Pequeno Príncipe</td>
+                    <td>Antoine de Saint-Exupéry</td>
+                    <td>1943</td>
+                    <td>Livro infantil que analisa questões profundas sobre a vida humana, amor e criatividade.</td>
+                </tr>
+                <tr>
+                    <td><img src="O senhor dos aneis.jpg" alt="O Senhor dos Anéis" class="book-image"></td>
+                    <td>O Senhor dos Anéis</td>
+                    <td>J. R. R. Tolkien</td>
+                    <td>1954–1955</td>
+                    <td>Trilogia fantástica sobre a missão de destruir o Anel do Poder para salvar a Terra Média.</td>
+                </tr>
+                <tr>
+                    <td><img src="Os miseraveis.jpg" alt="Os Miseráveis" class="book-image"></td>
+                    <td>Os Miseráveis</td>
+                    <td>Victor Hugo</td>
+                    <td>1862</td>
+                    <td>Clássico francês focado em conflitos sociais e a trajetória de Jean Valjean.</td>
+                </tr>
+                <tr>
+                    <td><img src="O conde monte cristo.jpg" alt="O Conde de Monte Cristo" class="book-image"></td>
+                    <td>O Conde de Monte Cristo</td>
+                    <td>Alexandre Dumas</td>
+                    <td>1844–1846</td>
+                    <td>História de vingança e redenção de Edmond Dantès contra seus inimigos.</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    
+    <footer>
+        Projeto acadêmico desenvolvido por estudantes criativos de TI – 2º/4º semestre 😄
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded'), function() {
+            
+            const searchInput = document.getElementById('searchInput');
+            const booksTable = document.getElementById('booksTable');
+            const rows = booksTable.getElementsByTagName('tr'); 
+              
+            
+          
+           
+            searchInput.addEventListener('input', function() {
+                const filter = this.value.toLowerCase();
+                
+                
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    const cells = row.getElementsByTagName('td');
+                    let shouldShow = false;
+                    
+                    
+                    for (let j = 1; j < cells.length; j++) {
+                        const cellText = cells[j].textContent.toLowerCase();
+                        
+                        if (cellText.includes(filter)) {
+                            shouldShow = true;
+                            break;
+                        }
+                    }
+                    
+                   
+                    row.style.display = shouldShow ? '' : 'none';
+                }
+            });
+            
+            
+            booksTable.addEventListener('mouseover', function(e) {
+                if (e.target.tagName === 'TD') {
+                    e.target.parentElement.style.backgroundColor = '#e3f2fd';
+                }
+            });
+            
+            booksTable.addEventListener('mouseout', function(e) {
+                if (e.target.tagName === 'TD') {
+                    e.target.parentElement.style.backgroundColor = '';
+                }
+            });
+            
+            
+            console.log('Aplicação carregada com sucesso!');
+            
+          
+            function addBook(title, author, year, summary, imageUrl) {}
+                const tbody = booksTable.querySelector('tbody');
+                const newRow = document.createElement('tr');
+                
+                newRow.innerHTML = `
+                    <td><img src="${imageUrl}" alt="${title}" class="book-image"></td>
+                    <td>${title}</td>
+                    <td>${author}</td>
+                    <td>${year}</td>
+                    <td>${summary}</td>
+                `;
+                
+                tbody.appendChild(newRow);
+               }
