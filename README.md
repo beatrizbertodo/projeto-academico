@@ -2,7 +2,7 @@
 
 Projeto acadêmico desenvolvido em grupo para uma disciplina da faculdade. O objetivo era criar um **site interativo** que integra páginas HTML, PHP e banco de dados.
 
-O tema escolhido foi uma **mini biblioteca**: os usuários podem navegar pelos livros disponíveis, ver o resumo (sinopse) de cada um e pegá-los emprestados.
+O tema escolhido foi uma **mini biblioteca**: os usuários podem navegar pelos livros disponíveis, ver o resumo (sinopse) de cada um.
 
 ## ✨ Funcionalidades
 
